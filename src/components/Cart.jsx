@@ -3,6 +3,7 @@ import { removeFromCart ,decreaseQuantity ,addToCart} from '../utils/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import { FaTrashAlt, FaShoppingCart } from 'react-icons/fa';
 import './Cart.css'
+import CartItem from './CartItem';
 
 function Cart(){
     const cartItems = useSelector(state => state.cart.items);
@@ -35,8 +36,9 @@ function Cart(){
                 cartItems.map(item => (
                 <div key={item.id} className='cart-container'>
                     <div>
-                        <p>{item.title} - ₹{item.price} x {item.quantity}</p>
-                        <img src={item.images[0]}alt={item.title} height="200px" width="150px"/>
+                        <CartItem data={item}/>   
+                        {/* <p>{item.title} - ₹{item.price} x {item.quantity}</p>
+                        <img src={item.images[0]}alt={item.title} height="200px" width="150px"/> */}
                     </div>
                     
                     <div className='button-group'>
