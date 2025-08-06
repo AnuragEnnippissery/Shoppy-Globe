@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 function ProductItem(props){
     const navigate = useNavigate();
     function HandleCardClick(){
-        navigate(`/ProductList/${props.detail.id}`)
+        navigate(`/ProductList/${props.detail._id}`)
 
     }
     const handleAddToCartClick = (e) => {
@@ -16,7 +16,7 @@ function ProductItem(props){
         <div >
             <div className="product" onClick={HandleCardClick}>
                 <h3>{props.detail.title}</h3>
-                <img src={props.detail.images[0]}alt={props.detail.title} height="300px" width="250px"/>
+                <img src={props.detail.image_url}alt={props.detail.title} height="300px" width="250px"/>
                 {/* <h3>{props.detail.rating}</h3> */}
                 <h3>₹ {props.detail.price}</h3>
                 <button className='button' onClick={handleAddToCartClick}>Add to cart</button> 

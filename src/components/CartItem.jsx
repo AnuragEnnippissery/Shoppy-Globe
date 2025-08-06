@@ -1,9 +1,15 @@
 function CartItem(props){
+    console.log("cart item",props)
     return(
         <>
-        <p>{props.data.title} - ₹{props.data.price} x {props.data.quantity}</p>
-        <img src={props.data.images[0]}alt={props.data.title} height="200px" width="150px"/>
+        {props?(
+            <>
+             <p>{props.data.title} - ₹{props.data.price} x {props.data.quantity}</p>
+        <img src={props.data.image}alt={props.data.title} height="200px" width="150px"/>
+        </>
 
+        ):(<p>Loading  Cart product's</p>)}
+       
         </>
     )
 }

@@ -1,7 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice} from '@reduxjs/toolkit';
+import { fetchCart,addToCartAsync,removeFromCartAsync,decreaseQuantityAsync } from './cartThunk';
+
 
 const initialState = {
   items: [],
+  loading:false,
 };
 
 const cartSlice = createSlice({
@@ -35,7 +38,31 @@ const cartSlice = createSlice({
         }
       }
     }
+    
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCart.pending, (state) => {
+        state.loading = true;
+      })
+     .addCase(fetchCart.fulfilled, (state, action) => {
+      state.loading = false;
+      state.items = action.payload.map(p => {
+        const product = p.productId;
+        return {
+          id: product?._id,
+          title: product?.title,
+          price: product?.price,
+          image: product?.image_url || product?.image || "",
+          quantity: p?.quantity
+        };
+      });
+    })
+
+      .addCase(fetchCart.rejected, (state) => {
+        state.loading = false;
+      });
+  }
 });
 
 export const { addToCart,removeFromCart,decreaseQuantity } = cartSlice.actions;

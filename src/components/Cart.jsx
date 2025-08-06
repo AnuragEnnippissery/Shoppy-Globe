@@ -4,19 +4,47 @@ import { useNavigate } from 'react-router-dom';
 import { FaTrashAlt, FaShoppingCart } from 'react-icons/fa';
 import './Cart.css'
 import CartItem from './CartItem';
+import {
+  addToCartAsync,
+  removeFromCartAsync,
+  decreaseQuantityAsync,
+  fetchCart
+} from '../utils/cartThunk';
+import { useEffect } from 'react';
 
 function Cart(){
+    const dispatch=useDispatch()
+    //const user = useSelector((state) => state.auth.user);
+    const userId=sessionStorage.getItem("id")
+    //const StoredUserId="64d1a013fc13ae1234567890"
+    useEffect(() => {
+        if (userId && userId) {
+            dispatch(fetchCart(userId));
+        }
+    }, [dispatch, userId]);
+
     const cartItems = useSelector(state => state.cart.items);
-     const dispatch=useDispatch()
-     const navigate=useNavigate()
+    //let userId= "64d1a013fc13ae1234567890";
+    //let ProductId= "64d1a123fc13ae1234567891";
+     
+    const navigate=useNavigate()
     function HandleRemove(product){
         dispatch(removeFromCart(product))
+        const productId=product?.id;
+        dispatch(removeFromCartAsync({ userId, productId }))
     }
     function HandleDecreaseQuantity(product){
         dispatch(decreaseQuantity(product))
+       const productId=product?.id;
+        dispatch(decreaseQuantityAsync({ userId, productId }))
     }
     function HandleAdd(product) {
         dispatch(addToCart(product));
+        //alert("123")
+        console.log("message",product)
+        //dispatch(addToCartAsync(userId,ProductId))
+        const productId=product?.id; //product._id || product.id;  make sure this is correct
+        dispatch(addToCartAsync({ userId, productId }));
     }
     function handleCheckout() {
         navigate('/Checkout'); // ✅ Navigate to checkout page

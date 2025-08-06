@@ -5,6 +5,7 @@ import './ProductItem.css'
 import useGetData from "../utils/dummydata"
 import { useDispatch } from 'react-redux';
 import {addToCart} from "../utils/cartSlice";
+import { addToCartAsync } from "../utils/cartThunk" 
 
 function ProductList(){
     // let[data,setData]=useState([])
@@ -20,17 +21,21 @@ function ProductList(){
     // },[])
     let data=useGetData()
     let dispatch=useDispatch()
+    //let userId= "64d1a013fc13ae1234567890";
+    const userId=sessionStorage.getItem("id")
     const [filteredProducts,setFilteredProducts] = useState([]);
     useEffect(() => {
         setFilteredProducts(data); // set initial filtered list when data is loaded
+        console.log("filter",filteredProducts)
     }, [data]);
     //console.log("filtered Products",filteredProducts)
     function handleSearch(e) {
         const query = e.target.value.toLowerCase();
     
         const searched = data.filter(product =>
-            product?.title?.toLowerCase().includes(query) ||
-            product?.brand?.toLowerCase().includes(query)
+            product?.title?.toLowerCase().includes(query)
+            
+           // || product?.brand?.toLowerCase().includes(query)
         );
         setFilteredProducts(searched);
         console.log(searched)
@@ -38,6 +43,10 @@ function ProductList(){
     function handleAdd(product){
         //console.log("item added",product)
         dispatch(addToCart(product));
+        console.log("product list",product)
+        const productId=product?._id;
+        console.log("productId",productId)
+        dispatch(addToCartAsync({userId,productId}))
 
     }
     return(
