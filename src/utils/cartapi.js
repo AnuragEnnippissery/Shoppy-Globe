@@ -34,8 +34,20 @@ export const removeFromCartAPI = async (userId, productId) => {
   return await response.json();
 };
 
+// export const fetchCartAPI = async (userId) => {
+//   const response = await fetch(`${API_BASE}/cart/${userId}`);
+//   console.log("fetch cart api",response)
+//   return await response.json();
+// };
 export const fetchCartAPI = async (userId) => {
-  const response = await fetch(`${API_BASE}/cart/${userId}`);
-  console.log("fetch cart api",response)
+  //const token = sessionStorage.getItem("token"); // or localStorage
+  const response = await fetch(`${API_BASE}/cart/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  console.log("fetch cart api", response);
   return await response.json();
 };
