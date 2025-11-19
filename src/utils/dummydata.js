@@ -6,7 +6,7 @@ function useGetData() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:3000/api/products");
+        const res = await fetch("https://shoppy-globe-backend-0xlo.onrender.com/api/products");
         const json = await res.json();
         console.log("data", json);
         setData(json);
@@ -26,7 +26,7 @@ export function useGetSingleProduct(id) {
   useEffect(() => {
     async function fetchProduct() {
       try {
-        const res = await fetch(`http://localhost:3000/api/products/${id}`);
+        const res = await fetch(`https://shoppy-globe-backend-0xlo.onrender.com/api/products/${id}`);
         const json = await res.json();
         console.log("api data",json)
         setProduct(json);

@@ -10,7 +10,7 @@ function Register(){
         console.log("password",password);
 
        //let res=
-       await fetch("http://localhost:3000/api/user/register", {
+       await fetch("https://shoppy-globe-backend-0xlo.onrender.com/api/user/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

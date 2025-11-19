@@ -10,7 +10,7 @@ function Login(){
         console.log("password",password);
 
        //let res=
-       await fetch("http://localhost:3000/api/user/login", {
+       await fetch("https://shoppy-globe-backend-0xlo.onrender.com/api/user/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
