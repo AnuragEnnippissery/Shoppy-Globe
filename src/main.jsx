@@ -12,7 +12,7 @@ import { Provider} from 'react-redux'
 import appStore from './utils/appStore.js'
 import { lazy ,Suspense} from 'react'
 import Checkout from './components/Checkout.jsx'
-import Login from './components/login/login.jsx'
+import Login from './components/login/Login.jsx'
 import Register from './components/login/Register.jsx'
 
 const Cart = lazy(() => import('./components/Cart.jsx'));
