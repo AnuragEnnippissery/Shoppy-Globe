@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 function Cart(){
     const dispatch=useDispatch()
     //const user = useSelector((state) => state.auth.user);
-    const userId=sessionStorage.getItem("id")
+    const userId=localStorage.getItem("id")
     //const StoredUserId="64d1a013fc13ae1234567890"
     useEffect(() => {
         if (userId && userId) {

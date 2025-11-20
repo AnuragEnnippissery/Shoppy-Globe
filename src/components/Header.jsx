@@ -10,7 +10,7 @@ function Header() {
     const [open, setOpen] = useState(false); // mobile navbar toggle
 
     useEffect(() => {
-        const storedUser = sessionStorage.getItem("username");
+        const storedUser = localStorage.getItem("username");
         if (storedUser) {
             setUser(storedUser);
         }

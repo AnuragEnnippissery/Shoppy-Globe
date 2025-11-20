@@ -22,7 +22,7 @@ function ProductList(){
     let data=useGetData()
     let dispatch=useDispatch()
     //let userId= "64d1a013fc13ae1234567890";
-    const userId=sessionStorage.getItem("id")
+    const userId=localStorage.getItem("id")
     const [filteredProducts,setFilteredProducts] = useState([]);
     useEffect(() => {
         setFilteredProducts(data); // set initial filtered list when data is loaded

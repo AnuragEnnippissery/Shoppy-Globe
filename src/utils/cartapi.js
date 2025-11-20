@@ -1,5 +1,5 @@
 const API_BASE = 'https://shoppy-globe-backend-0xlo.onrender.com/api'; //  backend URL
-const token = sessionStorage.getItem("token");
+const token = localStorage.getItem("token");
 export const addToCartAPI = async (userId, productId) => {
   const response = await fetch(`${API_BASE}/cart/add`, {
     method: 'POST',

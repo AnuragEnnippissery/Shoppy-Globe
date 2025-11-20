@@ -23,10 +23,10 @@ function Login(){
         .then(res => res.json())
         .then(data => {
             console.log("Response from server:", data);
-            sessionStorage.setItem("username", username);
+            localStorage.setItem("username", username);
             //console.log("id",data.id)
-            sessionStorage.setItem("id",data.id);
-            sessionStorage.setItem("token",data.token);
+            localStorage.setItem("id",data.id);
+            localStorage.setItem("token",data.token);
         })
         .catch(err => {
             console.error("Login error:", err);
